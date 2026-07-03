@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Support Hub</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #030712;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1f2937;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: #38bdf8;
+        }
+
+        /* Page Sections Control */
+        .page-section {
+            display: none; /* Hide all sections by default */
+        }
+
+        .page-section.active-section {
+            display: block; /* Show only active section */
+        }
+
+        /* Helpline Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #0b1528 0%, #030712 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid #1f2937;
+        }
+
+        .hero-banner h1 {
+            font-size: 26px;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .hero-banner p {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .helpline-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .phone-box {
+            background: #ffffff;
+            color: #000000;
+            padding: 10px 25px;
+            font-weight: 700;
+            border-radius: 6px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.2);
+        }
+
+        .phone-box i {
+            color: #0284c7;
+        }
+
+        /* Layout Containers */
+        .support-section, .about-container, .blog-section {
+            max-width: 1150px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        /* Alternating Grid Rows (Home Page) */
+        .support-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 70px;
+            gap: 40px;
+        }
+
+        .support-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .support-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .support-text h3 {
+            font-size: 26px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .support-text p {
+            color: #9ca3af;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .btn-action {
+            background-color: #38bdf8;
+            color: #000000;
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background 0.3s, transform 0.2s;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-action:hover {
+            background-color: #0ea5e9;
+            transform: translateY(-2px);
+        }
+
+        .support-image, .highlight-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        /* Image Mockups */
+        .img-mock, .char-mock {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            border: 1px solid #374151;
+            border-radius: 12px;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #4b5563;
+            font-size: 14px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .img-mock i, .char-mock i {
+            font-size: 48px;
+            color: #38bdf8;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        /* App Strip Banner */
+        .app-banner {
+            background: linear-gradient(90deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 50px 20px;
+            margin: 60px 0;
+            border-top: 1px solid #38bdf8;
+            border-bottom: 1px solid #38bdf8;
+        }
+
+        .app-banner h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .btn-download {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background 0.3s;
+            text-transform: uppercase;
+            font-size: 14px;
+            border: 1px solid #38bdf8;
+        }
+
+        .btn-download:hover {
+            background-color: #111827;
+        }
+
+        /* About Page Specific Styles */
+        .page-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #ffffff;
+            border-bottom: 2px solid #1f2937;
+            padding-bottom: 10px;
+        }
+
+        .top-desc {
+            color: #cccccc;
+            font-size: 15px;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 50px 0;
+            gap: 40px;
+            background-color: #030712;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+        }
+
+        .highlight-text {
+            flex: 1.2;
+            min-width: 300px;
+        }
+
+        .highlight-text h3 {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .highlight-text p {
+            color: #9ca3af;
+            font-size: 14.5px;
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .char-mock {
+            max-width: 320px;
+            height: 350px;
+        }
+
+        .char-mock i {
+            font-size: 64px;
+        }
+
+        /* Payment Methods Strip */
+        .payment-methods-strip {
+            text-align: center;
+            margin: 60px 0;
+            padding: 30px 0;
+            border-top: 1px solid #1f2937;
+            border-bottom: 1px solid #1f2937;
+        }
+
+        .payment-methods-strip h2 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .payment-logo-mock {
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            padding: 12px 30px;
+            font-weight: 700;
+            font-style: italic;
+            border-radius: 6px;
+            color: #ffffff;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .payment-logo-mock span {
+            color: #38bdf8;
+        }
+
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .guideline-col h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .guideline-col h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: #38bdf8;
+            margin-top: 5px;
+        }
+
+        .guideline-col p {
+            color: #9ca3af;
+            font-size: 13.5px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Blogs Section Elements */
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #38bdf8;
+            margin: 10px auto 0;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .blog-card {
+            background-color: #030712;
+            border: 1px solid #1f2937;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+
+        .blog-thumb {
+            height: 190px;
+            background-color: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4b5563;
+            font-size: 40px;
+            border-bottom: 1px solid #1f2937;
+        }
+
+        .blog-content {
+            padding: 20px;
+        }
+
+        .blog-content h4 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .blog-content p {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .blog-link {
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Footer Guidelines & Keywords */
+        footer {
+            background-color: #020617;
+            padding: 50px 20px 20px;
+            border-top: 1px solid #1f2937;
+            font-size: 13px;
+            color: #9ca3af;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            max-width: 1150px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h3 {
+            color: #ffffff;
+            margin-bottom: 18px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .footer-col p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .keywords-wrapper {
+            max-width: 1150px;
+            margin: 40px auto 0;
+            padding-top: 25px;
+            border-top: 1px solid #1f2937;
+            font-size: 11px;
+            color: #4b5563;
+            line-height: 2;
+        }
+
+        .copyright-bar {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #4b5563;
+        }
+
+        /* Responsive Mobile Layout */
+        @media (max-width: 768px) {
+            .support-row, .support-row:nth-child(even), .highlight-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .footer-container, .guidelines-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo" onclick="showSection('home-page')">Brand<span>Portal</span></div>
+        <nav>
+            <a id="nav-home" class="active" onclick="showSection('home-page')">Home</a>
+            <a id="nav-about" onclick="showSection('about-page')">About us</a>
+            <a id="nav-blogs" onclick="showSection('blogs-page')">Blogs</a>
+        </nav>
+    </header>
+
+    <!-- ==================== HOME PAGE SECTION ==================== -->
+    <div id="home-page" class="page-section active-section">
+        <!-- Hero Helpline Section -->
+        <section class="hero-banner">
+            <h1>CUSTOMER SUPPORT SERVICE</h1>
+            <p>Get immediate responses and assistance from our professional helpdesk teams available 24/7.</p>
+            <div class="helpline-container">
+                <div class="phone-box"><i class="fa-solid fa-phone"></i> +91 99999 88888</div>
+                <div class="phone-box"><i class="fa-solid fa-phone"></i> +91 99999 77777</div>
+            </div>
+        </section>
+
+        <!-- Support Rows Section -->
+        <section class="support-section">
+            <!-- Row 1: Payment Support -->
+            <div class="support-row">
+                <div class="support-text">
+                    <h3>Payment Support</h3>
+                    <p>Facing issues with your recent deposits or dynamic payment transfers? Connect with our dedicated transactional desk right now to verify logs and update status instantly.</p>
+                    <a href="#" class="btn-action">Connect Support</a>
+                </div>
+                <div class="support-image">
+                    <div class="img-mock">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <span>Payment Interface Illustration</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Withdrawal Support -->
+            <div class="support-row">
+                <div class="support-text">
+                    <h3>Withdrawal Issues</h3>
+                    <p>Are you experiencing pending queues or settlement delays? Reach out directly to receive instant processing validation and structural fixes for automated payouts.</p>
+                    <a href="#" class="btn-action">Resolve Issues</a>
+                </div>
+                <div class="support-image">
+                    <div class="img-mock">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <span>Withdrawal Desk Illustration</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Game Queries -->
+            <div class="support-row">
+                <div class="support-text">
+                    <h3>Game Queries Assistance</h3>
+                    <p>Need details regarding general interface operations, dashboard metrics, or game history configurations? Our technical panel will guide you through the layouts smoothly.</p>
+                    <a href="#" class="btn-action">Get Assistance</a>
+                </div>
+                <div class="support-image">
+                    <div class="img-mock">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span>Gaming Operations Graphics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- App Download Strip -->
+        <section class="app-banner">
+            <h2>AUTO DEPOSIT & WITHDRAWAL APP WITH MORE OPTIONS</h2>
+            <a href="#" class="btn-download">Download Our App</a>
+        </section>
+    </div>
+
+
+    <!-- ==================== ABOUT US SECTION ==================== -->
+    <div id="about-page" class="page-section">
+        <div class="about-container">
+            <h1 class="page-title">About Us</h1>
+            
+            <p class="top-desc">
+                We are well known for providing the greatest online interface management and support experience to users worldwide. With the vision of premium online infrastructure integration, we offer a wide range of administrative structural layouts and responsive solution portals in our specially designed environment to meet the needs of both professional managers and beginner web administrators.
+            </p>
+            <p class="top-desc">
+                We provide a secure and user-friendly environment to place configuration requests and access swift query alignments. Additionally, our system architecture contributes to making your administrative operations unforgettable. Being dedicated to top-tier technical excellence, we ensure that you get a highly systematic and transparent experience with our helpdesk frameworks.
+            </p>
+
+            <!-- Middle Highlight Section -->
+            <section class="highlight-section">
+                <div class="highlight-text">
+                    <h3>Unforgettable Management Experience</h3>
+                    <p>Our administrative structure is highly optimized for delivering seamless support updates globally. By keeping focus intact on core web usability, we build dynamic channels that resolve platform queues efficiently.</p>
+                    <p>We provide clean environments to optimize code execution and user verification loops. Our operational layouts ensure complete tracking visibility, meaning you receive standard-compliant, secure assistance throughout the cycle.</p>
+                </div>
+                <div class="highlight-image">
+                    <div class="char-mock">
+                        <i class="fa-solid fa-user-shield"></i>
+                        <span>Support Representative Mock</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Payment Methods Showcase Strip -->
+            <section class="payment-methods-strip">
+                <h2>Payment Methods</h2>
+                <div class="logos-container">
+                    <div class="payment-logo-mock">UPI<span>Gateway</span></div>
+                    <div class="payment-logo-mock">Phone<span>Pe</span></div>
+                    <div class="payment-logo-mock">G<span>Pay</span></div>
+                    <div class="payment-logo-mock">Pay<span>tm</span></div>
+                </div>
+            </section>
+
+            <!-- 2-Column Guidelines Content -->
+            <section class="guidelines-grid">
+                <div class="guideline-col">
+                    <h3>A Responsible Service Experience</h3>
+                    <p>We suggest that every administrator utilizes these interface structures keeping structural compliance in mind. These panels must be handled for technical evaluation purposes to protect system health. We also suggest new users maintain careful documentation habits to avoid layout conflicts.</p>
+                </div>
+                <div class="guideline-col">
+                    <h3>Guaranteed Transparency And Security</h3>
+                    <p>Your template structure and data layouts are very important to us. Our framework layout does not encourage or perform tasks that complicate the developer experience or data visibility. To protect the presentation layers of our frameworks, we keep complete transparency across every component block and module.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- ==================== BLOGS SECTION ==================== -->
+    <div id="blogs-page" class="page-section">
+        <section class="blog-section">
+            <h3 class="section-title">Our Blogs</h3>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-thumb"><i class="fa-regular fa-newspaper"></i></div>
+                    <div class="blog-content">
+                        <h4>Understanding Support Frameworks</h4>
+                        <p>Discover how direct helpdesks ensure smooth management of secure payment gateways globally.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-thumb"><i class="fa-regular fa-newspaper"></i></div>
+                    <div class="blog-content">
+                        <h4>Dashboard Efficiency Tips</h4>
+                        <p>A breakdown of user interface layouts designed for super-fast navigation and transaction tracking.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-thumb"><i class="fa-regular fa-newspaper"></i></div>
+                    <div class="blog-content">
+                        <h4>Security Best Practices</h4>
+                        <p>Learn tips and methods to keep user authentication and log systems safe from potential anomalies.</p>
+                        <a href="#" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- ==================== COMMON FOOTER ==================== -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Platform Standard Guidelines</h3>
+                <p>Our platform operations are designed strictly to ensure clear communication flows between support agents and end-users. We highly recommend consulting official panels for all verification layouts to keep operations clean and streamlined.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Transparency & Interface Security</h3>
+                <p>User layout integrity is our utmost priority. We perform systematic performance checks to minimize interface drops, ensuring completely responsive layouts across both modern web panels and mobile architectures.</p>
+            </div>
+        </div>
+
+        <div class="keywords-wrapper">
+            <strong>Keywords:</strong> secure dynamic support panel | professional dashboard layout | customer service template | premium black web portal | responsive tech support dashboard | clean layout integration | automated assistance hub.
+        </div>
+
+        <div class="copyright-bar">
+            &copy; 2026 BrandPortal. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript Navigation Control Script -->
+    <script>
+        function showSection(sectionId) {
+            // 1. Hide all page sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active-section');
+            });
+
+            // 2. Show the targeted section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active-section');
+            }
+
+            // 3. Update active state class in Navbar links
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            if (sectionId === 'home-page') document.getElementById('nav-home').classList.add('active');
+            if (sectionId === 'about-page') document.getElementById('nav-about').classList.add('active');
+            if (sectionId === 'blogs-page') document.getElementById('nav-blogs').classList.add('active');
+            
+            // Scroll back to top smoothly when switching tabs
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
